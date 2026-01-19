@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-01-19",
+    "title": "🚀 Artemis 2 Easter Egg - Mini Gra",
+    "text": "Dodałem ukrytą mini grę na stronie! Kliknij 3 razy na logo \"mikipilarsk.site\" aby przejść do misji Artemis 2. Pomóż NASA wysłać rakietę SLS na Księżyc! Unikaj asteroidów, zbieraj paliwo i osiągnij cel 500 punktów. Sterowanie: WSAD. Gra ma progresywną trudność — im więcej punktów, tym trudniej! Dostępna tylko na komputerze (wymaga klawiatury).",
+    "tags": ["easter-egg", "gra", "artemis", "nasa", "interaktywne"],
+    "links": [
+      { "label": "Zagraj teraz", "href": "artemis.html" },
+      { "label": "NASA Artemis", "href": "https://www.nasa.gov/artemis/" }
+    ]
+  },
+  {
+    "date": "2026-01-19",
     "title": "Start sekcji Aktualności na stronie",
     "text": "Dodałem sekcję z krótkimi wpisami — będzie tu trafiać wszystko, co nowego u mnie.",
     "tags": ["site", "update"],

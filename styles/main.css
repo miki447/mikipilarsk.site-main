@@ -611,6 +611,21 @@ ul {
 }
 
 /* ============================================
+   FOOTER SEKCJI Z PRZYCISKAMI
+   ============================================ */
+.news-footer {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-2xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+.news-more {
+    text-decoration: none;
+}
+
+/* ============================================
    SEKCJA O MNIE
    ============================================ */
 .about-content {
@@ -1055,98 +1070,65 @@ ul {
    SEKCJA KONTAKT
    ============================================ */
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
-    align-items: start;
-}
-
-.contact-info {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-.contact-lead {
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
-    line-height: 1.8;
-}
-
-.contact-methods {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-}
-
-.contact-method {
-    display: flex;
+    gap: var(--spacing-xl);
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
-    background: var(--color-card-background);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all var(--transition-base);
-    color: var(--color-text-light);
-    text-decoration: none;
-}
-
-.contact-method:hover {
-    border-color: var(--color-primary);
-    background: var(--color-card-hover);
-    transform: translateX(5px);
-    color: var(--color-text-light);
-}
-
-.contact-icon {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(37, 99, 235, 0.15);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(37, 99, 235, 0.3);
-    flex-shrink: 0;
-}
-
-.contact-icon i {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-}
-
-.contact-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.contact-details strong {
-    color: var(--color-text-light);
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.contact-details span {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-}
-
-.contact-arrow {
-    color: var(--color-primary);
-    transition: transform var(--transition-base);
-}
-
-.contact-method:hover .contact-arrow {
-    transform: translateX(5px);
+    text-align: center;
 }
 
 .contact-cta {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.contact-lead {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-socials {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.contact-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 500px;
+}
+
+.contact-icon-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: var(--spacing-md);
+    background: rgba(37, 99, 235, 0.08);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    transition: all var(--transition-base);
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.contact-icon-link i {
+    font-size: 1.8rem;
+    color: var(--color-primary);
+}
+
+.contact-icon-link:hover {
+    border-color: var(--color-primary);
+    background: rgba(37, 99, 235, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
 }
 
 /* ============================================
