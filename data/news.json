@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2026-01-19",
+    "title": "Start sekcji Aktualności na stronie",
+    "text": "Dodałem sekcję z krótkimi wpisami — będzie tu trafiać wszystko, co nowego u mnie.",
+    "tags": ["site", "update"],
+    "links": [
+      { "label": "GitHub", "href": "https://github.com/miki447/" }
+    ]
+  },
+  {
+    "date": "2026-01-10",
+    "title": "Nowy projekt w planach",
+    "text": "Wkrótce wrzucę opis kolejnego projektu (i parę zdjęć).",
+    "tags": ["projekty"]
+  }
+]

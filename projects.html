@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekty | mikipilarsk.site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header id="main-header">
+        <nav class="container">
+            <h1 class="logo">mikipilarsk.site</h1>
+            <ul>
+                <li><a href="index.html#about">O Mnie</a></li>
+                <li><a href="index.html#skills">Umiejętności</a></li>
+                <li><a href="news.html">Aktualności</a></li>
+                <li><a href="projects.html" class="active">Projekty</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+            <div class="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="projects-page" class="section-padding">
+            <div class="container">
+                <h2>Projekty: </h2>
+                <p class="section-subtitle">Pełna lista projektów:</p>
+                <div id="projects-feed" class="projects-grid" aria-live="polite"></div>
+                <p id="projects-empty" class="news-empty" hidden>Brak projektów na ten moment.</p>
+                <div class="news-footer">
+                    <a class="cta-button news-more" href="index.html#projects"><i class="fa-solid fa-arrow-left"></i> Wróć na stronę główną</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Powrót na górę">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mikołaj Pilarski. Zbudowane bez ai 👀.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

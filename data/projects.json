@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2025-01-15",
+    "title": "Strona internetowa którą właśnie czytasz!",
+    "tags": ["Javascript", "CSS", "HTML"],
+    "description": "Pierwsza prawdziwie hostowana strona internetowa z customowym adresem!",
+    "codeUrl": "https://github.com/Twoj_Nick/Projekt1",
+    "liveUrl": "https://mikipilarsk.site",
+    "image": ""
+  },
+  {
+    "date": "2024-12-10",
+    "title": "ESP32 Marauder",
+    "tags": ["SBC", "ESP32", "COM", "Hacktheworld!"],
+    "description": "Multifunkcyjne urządzenie do pentestowania sieci bezprzewodowych.",
+    "codeUrl": "https://github.com/justcallmekoko/ESP32Marauder",
+    "liveUrl": "",
+    "image": ""
+  }
+]
