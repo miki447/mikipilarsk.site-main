@@ -269,19 +269,21 @@ async function setupNews() {
 }
 
 // --- 6. Projekty (render z JSON) ---
-function renderProjectItem(item) {
+function renderProjectItem(item, index) {
     const title = item?.title ? escapeHtml(item.title) : '';
     const description = item?.description ? escapeHtml(item.description) : '';
+    const content = item?.content ? item.content : '';
     const tags = Array.isArray(item?.tags) ? item.tags : [];
     const codeUrl = item?.codeUrl ? String(item.codeUrl) : '';
     const liveUrl = item?.liveUrl ? String(item.liveUrl) : '';
     const image = item?.image ? String(item.image) : '';
+    const imageAspect = item?.imageAspect ? String(item.imageAspect) : '1-1'; // domyślnie 1:1
 
     const tagsText = tags.length > 0 ? tags.map(t => `#${t}`).join(' ') : '';
 
     const imageHtml = image
         ? `<img src="${escapeHtml(image)}" alt="${title ? escapeHtml(title) : 'Projekt'}" style="width:100%;height:100%;object-fit:cover;">`
-        : 'Brak zdjęcia';
+        : '';
 
     const links = [];
     if (codeUrl) {
@@ -295,8 +297,14 @@ function renderProjectItem(item) {
         );
     }
 
+    const hasContent = content && content.trim().length > 0;
+    const contentClass = hasContent ? 'has-content' : '';
+    const contentHtml = hasContent 
+        ? `<div class="project-content"><button class="project-close" aria-label="Zamknij">&times;</button>${content.split('\\n').map(p => p.trim()).filter(p => p).map(p => `<p>${p}</p>`).join('')}</div>`
+        : '';
+
     return `
-        <article class="project-card">
+        <article class="project-card ${contentClass}" data-project-id="${index}">
             <figure class="project-figure">
                 ${imageHtml}
             </figure>
@@ -306,9 +314,11 @@ function renderProjectItem(item) {
                 ${description ? `<p class="project-desc">${description}</p>` : ''}
                 ${links.length ? `<div class="project-links">${links.join('')}</div>` : ''}
             </div>
+            ${contentHtml}
         </article>
     `;
 }
+
 
 async function setupProjects() {
     // Main page teaser (3 latest)
@@ -344,9 +354,53 @@ async function setupProjects() {
 
     // najnowsze na górze (date desc) — gdy brak daty, na koniec
     items.sort((a, b) => String(b?.date || '').localeCompare(String(a?.date || '')));
-    if (teaserEl) teaserEl.innerHTML = items.slice(0, 3).map(renderProjectItem).join('');
-    if (feedEl) feedEl.innerHTML = items.map(renderProjectItem).join('');
+    if (teaserEl) teaserEl.innerHTML = items.slice(0, 3).map((item, idx) => renderProjectItem(item, idx)).join('');
+    if (feedEl) feedEl.innerHTML = items.map((item, idx) => renderProjectItem(item, idx)).join('');
     if (emptyEl) emptyEl.hidden = true;
+
+    // Dodaj obsługę kliknięcia na artykuły z zawartością
+    const containers = [];
+    if (teaserEl) containers.push(teaserEl);
+    if (feedEl) containers.push(feedEl);
+
+    containers.forEach(projectsContainer => {
+        projectsContainer.querySelectorAll('.project-card.has-content').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Nie toggle'uj jeśli kliknęli na link
+                if (e.target.closest('a')) return;
+                // Nie toggle'uj jeśli kliknęli na zamknięcie
+                if (e.target.closest('.project-close')) return;
+                
+                card.classList.toggle('expanded');
+                if (card.classList.contains('expanded')) {
+                    document.body.classList.add('project-modal-open');
+                } else {
+                    document.body.classList.remove('project-modal-open');
+                }
+            });
+
+            // Close button
+            const closeBtn = card.querySelector('.project-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    card.classList.remove('expanded');
+                    document.body.classList.remove('project-modal-open');
+                });
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const expandedCard = projectsContainer.querySelector('.project-card.expanded');
+                if (expandedCard) {
+                    expandedCard.classList.remove('expanded');
+                    document.body.classList.remove('project-modal-open');
+                }
+            }
+        });
+    });
 }
 
 // --- 7. Easter Egg - Artemis 2 Gra ---

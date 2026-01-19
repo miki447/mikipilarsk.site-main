@@ -996,6 +996,35 @@ ul {
     right: 0;
     bottom: 0;
     background: var(--color-accent-gradient-subtle);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: 1;
+}
+
+.project-card:hover .project-figure::before {
+    opacity: 1;
+}
+
+/* Placeholder tekst gdy brak zdjęcia */
+.project-figure:empty::after,
+.project-figure:has(> :only-child:empty)::after {
+    content: 'Brak zdjęcia';
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 1rem;
+    z-index: 2;
+    position: relative;
+}
+
+.project-figure::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-accent-gradient-subtle);
     opacity: 0;
     transition: opacity var(--transition-base);
 }
@@ -1009,6 +1038,19 @@ ul {
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-slow);
+    position: relative;
+    z-index: 2;
+}
+
+/* Proporcje zdjęcia - 1:1 (kwadrat) i 16:9 (widescreen) */
+img.aspect-1-1,
+img[data-aspect="1-1"] {
+    aspect-ratio: 1 / 1;
+}
+
+img.aspect-16-9,
+img[data-aspect="16-9"] {
+    aspect-ratio: 16 / 9;
 }
 
 .project-card:hover .project-figure img {
@@ -1047,6 +1089,299 @@ ul {
     display: flex;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+}
+
+/* ============================================
+   ARTYKUŁ ROZWIJANY (AKORDEON)
+   ============================================ */
+.project-card.has-content {
+    cursor: pointer;
+}
+
+.project-card.has-content .project-info::after {
+    content: 'Dowiedz się więcej';
+    position: absolute;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: all var(--transition-base);
+    letter-spacing: 0.02em;
+}
+
+.project-card.has-content .project-info {
+    position: relative;
+}
+
+.project-card.has-content.expanded .project-info::after {
+    content: 'Zamknij';
+    color: var(--color-secondary);
+}
+
+.project-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height var(--transition-slow), opacity var(--transition-base), padding var(--transition-base);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-card.expanded .project-content {
+    max-height: 2000px;
+    opacity: 1;
+    padding: var(--spacing-lg) var(--spacing-lg) 0 var(--spacing-lg);
+}
+
+.project-content p {
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+}
+
+.project-content p:last-child {
+    margin-bottom: 0;
+    padding-bottom: var(--spacing-lg);
+}
+
+/* Overlay behind the expanded article */
+.project-card.expanded::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    animation: fadeIn var(--transition-base);
+    backdrop-filter: blur(8px);
+    pointer-events: auto;
+}
+
+/* Body overlay - opcjonalny dodatkowy overlay */
+body.project-modal-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+}
+
+/* Expanded card - centered modal */
+.project-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 850px;
+    max-height: 85vh;
+    height: auto;
+    z-index: 1000;
+    border-radius: var(--radius-lg);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background: var(--color-card-background);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.project-card.expanded::-webkit-scrollbar {
+    width: 8px;
+}
+
+.project-card.expanded::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.project-card.expanded::-webkit-scrollbar-thumb {
+    background: rgba(37, 99, 235, 0.3);
+    border-radius: 4px;
+}
+
+.project-card.expanded::-webkit-scrollbar-thumb:hover {
+    background: rgba(37, 99, 235, 0.5);
+}
+
+.project-card.expanded .project-figure {
+    display: flex;
+    height: 300px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%);
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card.expanded .project-figure::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-accent-gradient-subtle);
+    backdrop-filter: blur(20px);
+    z-index: 1;
+}
+
+.project-card.expanded .project-figure img {
+    position: relative;
+    z-index: 2;
+}
+
+/* Placeholder tekst gdy brak zdjęcia */
+.project-figure.no-image::after {
+    content: 'Brak zdjęcia';
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.project-card.expanded .project-info {
+    padding: var(--spacing-lg) var(--spacing-2xl) var(--spacing-md);
+    flex-grow: 0;
+    border-bottom: none;
+    position: relative;
+}
+
+.project-card.expanded .project-info h3 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: var(--spacing-md);
+    padding-right: 50px;
+    color: var(--color-text-light);
+}
+
+.project-card.expanded .project-info::after {
+    display: none;
+}
+
+.project-card.expanded .project-desc {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.project-card.expanded .project-links {
+    margin-top: var(--spacing-md);
+}
+
+/* Close button for modal */
+.project-card.expanded .project-close {
+    position: fixed;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: var(--color-text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    z-index: 1002;
+    padding: 0;
+    line-height: 1;
+}
+
+.project-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-primary);
+    transform: rotate(90deg);
+}
+
+/* Content area - scrollable */
+.project-card.expanded .project-content {
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    padding: var(--spacing-2xl);
+    border-top: none;
+    flex-grow: 1;
+}
+
+.project-card.expanded .project-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+}
+
+.project-card.expanded .project-content p:last-child {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .project-card.expanded {
+        width: 95%;
+        max-width: 95%;
+        max-height: 90vh;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .project-card.expanded .project-figure {
+        height: 220px;
+    }
+
+    .project-card.expanded .project-info {
+        padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+    }
+
+    .project-card.expanded .project-content {
+        padding: var(--spacing-lg);
+    }
+
+    .project-card.expanded .project-info h3 {
+        font-size: 1.5rem;
+        padding-right: 45px;
+    }
+
+    .project-close {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.25rem !important;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body.project-modal-open {
+    overflow: hidden !important;
+}
+
+/* Zapewn scrollowanie wewnątrz modala */
+.project-card.expanded {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card.expanded .project-info,
+.project-card.expanded .project-content {
+    word-break: break-word;
+    white-space: normal;
 }
 
 .project-links a {

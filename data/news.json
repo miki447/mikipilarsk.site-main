@@ -1,6 +1,16 @@
 [
   {
     "date": "2026-01-19",
+    "title": "Ukończyłem ESP32 Marauder — całą historię opublikowałem!",
+    "text": "Skończyłem budowę ESP32 Marauder i udokumentowałem całe doświadczenie. Zmierzyłem się z wyzwaniami: zbyt grubymi przewodami, problemami z lutowaniem i początkowymi trudnościami z wgraniem kodu. Wszystko opisałem szczegółowo w sekcji projektów — zapraszam do przeczytania!",
+    "tags": ["ESP32", "projekt", "DIY", "pentesting"],
+    "links": [
+      { "label": "Czytaj artykuł", "href": "projects.html" },
+      { "label": "Oficjalny GitHub", "href": "https://github.com/justcallmekoko/ESP32Marauder" }
+    ]
+  },
+  {
+    "date": "2026-01-19",
     "title": "🚀 Artemis 2 Easter Egg - Mini Gra",
     "text": "Dodałem ukrytą mini grę na stronie! Kliknij 3 razy na logo \"mikipilarsk.site\" aby przejść do misji Artemis 2. Pomóż NASA wysłać rakietę SLS na Księżyc! Unikaj asteroidów, zbieraj paliwo i osiągnij cel 500 punktów. Sterowanie: WSAD. Gra ma progresywną trudność — im więcej punktów, tym trudniej! Dostępna tylko na komputerze (wymaga klawiatury).",
     "tags": ["easter-egg", "gra", "artemis", "nasa", "interaktywne"],
