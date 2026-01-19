@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemis 2 - Mini Gra | mikipilarsk.site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="artemis-page">
+
+    <header id="main-header">
+        <nav class="container">
+            <a href="index.html" class="logo">mikipilarsk.site</a>
+            <div class="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="artemis-main">
+        <section class="artemis-container">
+            <div class="artemis-header">
+                <h1>🚀 Artemis 2 Mission Control</h1>
+                <p>Pomóż NASA wysłać misję Artemis 2 na Księżyc!</p>
+            </div>
+
+            <div class="artemis-game-wrapper">
+                <canvas id="artemis-canvas" width="800" height="600"></canvas>
+                
+                <div class="artemis-controls">
+                    <div class="controls-info">
+                        <p><strong>Sterowanie:</strong>A/D do ruchu w bok</p>
+                        <p><strong>Loty:</strong>W/S do lotu w górę/dół</p>
+                        <p><strong>Cel:</strong> Zbierz paliwo i unikaj asteroidów!</p>
+                    </div>
+                    
+                    <div class="game-stats">
+                        <div class="stat">
+                            <span class="stat-label">Cel:</span>
+                            <span id="goal" class="stat-value">500 pkt</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Wynik:</span>
+                            <span id="score" class="stat-value">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Paliwo:</span>
+                            <div class="fuel-bar">
+                                <div id="fuel-amount" class="fuel-fill"></div>
+                            </div>
+                            <span id="fuel-text" class="stat-value">100%</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Życia:</span>
+                            <span id="lives" class="stat-value">3 ❤️</span>
+                        </div>
+                    </div>
+
+                    <div class="game-buttons">
+                        <button id="start-btn" class="artemis-btn btn-primary">Rozpocznij Grę</button>
+                        <button id="pause-btn" class="artemis-btn btn-secondary" disabled>Pauza</button>
+                    </div>
+                </div>
+
+                <div id="game-over" class="game-over-screen" hidden>
+                    <div class="game-over-content">
+                        <h2 id="game-over-title">Gra Skończona!</h2>
+                        <p id="game-over-message">Twój wynik: <strong id="final-score">0</strong></p>
+                        <button id="restart-btn" class="artemis-btn btn-primary">Graj Jeszcze Raz</button>
+                        <a href="index.html" class="artemis-btn btn-secondary">Powrót na Stronę Główną</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Powrót na górę">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mikołaj Pilarski. Artemis 2 Easter Egg 🌙</p>
+        </div>
+    </footer>
+
+    <script src="scripts/artemis-game.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

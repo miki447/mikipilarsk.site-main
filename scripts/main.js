@@ -349,6 +349,31 @@ async function setupProjects() {
     if (emptyEl) emptyEl.hidden = true;
 }
 
+// --- 7. Easter Egg - Artemis 2 Gra ---
+function setupArtemisEasterEgg() {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+
+    let clickCount = 0;
+    let clickTimeout;
+
+    logo.addEventListener('click', (e) => {
+        e.preventDefault();
+        clickCount++;
+
+        if (clickTimeout) clearTimeout(clickTimeout);
+        clickTimeout = setTimeout(() => {
+            if (clickCount === 3) {
+                window.location.href = 'artemis.html';
+            }
+            clickCount = 0;
+        }, 500);
+    });
+
+    // Visual feedback - zmiana kursora
+    logo.style.cursor = 'pointer';
+}
+
 // --- 3. Główna Funkcja Uruchamiająca ---
 document.addEventListener('DOMContentLoaded', () => {
     setupTypingEffect();
@@ -357,4 +382,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollSpy();
     setupNews();
     setupProjects();
+    setupArtemisEasterEgg();
 });
